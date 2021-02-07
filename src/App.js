@@ -1,22 +1,48 @@
 
 import react from 'react';
-import React,{ Component} from 'react';
 
-// クラスコンポーネント記述
-class App extends Component{
-  render(){
-    const greeting ='Hi'
-    const dom = <React.Fragment><h1>{greeting}</h1><input type='text' onClick={()=>{console.log('im click')}}/></React.Fragment>;
-    return dom;
-  }
+
+// functionコンポーネント記述
+const App = () => {
+
+  const profiles = [
+    { name: 'taro', age: 15 },
+    { name: 'json', age: 18 },
+    { name: 'ace', }
+  ];
+  const jobs =[
+    {name:"daiku"},
+    {name:"baseBall"}
+  ]
+  // return()内はjsxなのでjavascriptを記述するときは{}でくくる
+  return (
+    <div>
+      {profiles.map((profile,index) => {
+        // タグ<User />で関数を紐付 keyがないとエラー
+        return <User name={profile.name} age={profile.age} key={index}/>
+      })
+      }
+      {
+      jobs.map((job,index)=>{
+        return <Job name={job.name} key={index}/>
+      })
+      }
+    </div>
+  )
 }
-// // functionコンポーネント記述
-// function App() {
-//   const greeting ='Hi'
-//   // const dom = <React.Fragment><h1>{greeting}</h1><input type='text' onClick={()=>{console.log('im click')}}/></React.Fragment>;
-//   return (
-//     <React.Fragment><h1>{greeting}</h1><input type='text' onClick={()=>{console.log('im click')}}/></React.Fragment>
-//   );
-// }
+
+const User = (props) => {
+  return <div>I'am {props.name},{props.age}</div>
+}
+// デフォルト値を持たせる
+User.defaultProps = {
+  age:1
+}
+
+const Job =(props)=>{
+  return <div>
+    my job is {props.name}
+  </div>
+}
 
 export default App;

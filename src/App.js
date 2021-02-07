@@ -1,6 +1,5 @@
 
-import react from 'react';
-
+import PropTypes from 'prop-types';
 
 // functionコンポーネント記述
 const App = () => {
@@ -8,7 +7,7 @@ const App = () => {
   const profiles = [
     { name: 'taro', age: 15 },
     { name: 'json', age: 18 },
-    { name: 'ace', }
+    { name:'ace',age:15 }
   ];
   const jobs =[
     {name:"daiku"},
@@ -38,6 +37,13 @@ const User = (props) => {
 User.defaultProps = {
   age:1
 }
+// 型
+User.propTypes ={
+  name:PropTypes.string.isRequired,
+  // isRequiredで必須としている
+  age:PropTypes.number
+}
+
 
 const Job =(props)=>{
   return <div>
